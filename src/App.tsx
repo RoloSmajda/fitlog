@@ -1,25 +1,48 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './css/App.css'
+import { useState, useContext } from 'react';
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Routes
+} from "react-router-dom";
+import { Main } from './components/Main';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
+import { WorkoutDetail } from './components/workout/WorkoutDetail';
+
+import { UserContext } from './db/UserContext';
+
+export type User = {
+  id?: string,
+  name: string, 
+  email: string,
+  photoUrl: string,
+};
 
 function App() {
+
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    photoUrl: ""
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider value={{user, setUser}}>
+      
+
+      <Router>
+        <Routes>
+          <Route path="/" element={<Main/>} />
+          <Route path="/workout/:id" element={<WorkoutDetail/>} />
+        </Routes>
+      </Router>
+
+    </UserContext.Provider>
+    
   );
 }
 

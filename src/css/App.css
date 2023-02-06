@@ -1,0 +1,44 @@
+:root {
+  --background-color: #FDFDFD;
+
+  --text-primary-color: #2E2E2E;
+  --text-secondary-color: #b6b6b6;
+
+  /* --primary-color: #4939FF; */
+  --primary-color: #3FC2C4;
+  --secondary-color: #FFFFFF;
+
+  --warning-color: #C4413F;
+}
+
+body{
+  margin: 0;
+  background-color: var(--background-color);
+}
+
+#root {
+  text-align: center;
+  height: 100vh;
+}
+
+.main{
+  padding-top: 1em;
+  padding-left: 1.5em;
+  padding-right: 1.5rem;
+}
+
+.workoutDetail{
+  padding-left: 1.5em;
+  padding-right: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+
+.link:link,
+.link:visited,
+.link:hover,
+.link:active,
+.link {
+  text-decoration: none;
+  color: initial;
+}

@@ -1,0 +1,226 @@
+.header{
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 1em;
+}
+
+.headerRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.appName{
+    font-size: 4em;
+    font-weight: 900;
+    font-style: italic;
+
+    color: var(--text-primary-color);
+}
+
+.appLogo img{
+    height: 4.5em;
+}
+
+.userImg img{
+    height: 4em;
+    border-radius: 50%;
+}
+
+.logIn{
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5em;
+    font-weight: 500;
+
+    color: var(--primary-color);
+}
+
+.userInfo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin-top: 1em;
+}
+
+.userGreeting{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 2em;
+    font-weight: 600;
+
+    color: var(--primary-text-color);
+}
+.userGreeting div{
+    margin-bottom: -8px;
+}
+
+.logOut{
+    align-self: flex-end;
+    font-size: 3em;
+
+    color: var(--text-secondary-color);
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 600,
+    'GRAD' 0,
+    'opsz' 48
+  }
+
+
+.main{
+    display: flex;
+    flex-direction: column;
+}
+
+.workoutThumbnail, .exerciseThumbnail{
+    background-color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+
+    padding: 1em;
+    padding-right: 1.5em;
+
+    font-family: 'Inter', sans-serif;
+
+    border-radius: 1em;
+    margin-bottom: 1.5em;
+
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px; */
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+}
+
+.workoutThumbnail{
+    align-items: end;
+}
+
+.smallTitle{
+    font-size: 1.5em;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.date{
+    font-size: 3.5em;
+    font-weight: 900;
+    font-style: italic;
+
+    color: var(--text-primary-color);
+}
+
+.addButton{
+    color: var(--primary-color);
+    font-size: 4em;
+
+    position: fixed;
+    bottom: 1em;
+    right: 0.5em;
+    background-color: var(--background-color);
+    border-radius: 50%;
+}
+
+.workoutDetail .topRow{
+    background-color: var(--background-color);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    font-family: 'Intern', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+
+    font-size: 1.5em;
+    color: var(--text-primary-color);
+
+    padding: 1rem 0;
+    
+}
+
+.backBtn{
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.deleteBtn{
+    font-size: 1.6rem;
+    color: var(--warning-color);
+}
+
+.workoutDetail{
+}
+
+.exerciseThumbnail{
+    align-items: start;
+    margin-bottom: 1rem;
+}
+
+.exerciseTopRow{
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+
+    font-size: 1.5em;
+}
+
+.editIcon{
+    color: var(--primary-color);
+}
+
+.exerciseName{
+    font-weight: 900;
+    color: var(--text-primary-color);
+
+    margin-bottom: 0.5rem;
+}
+
+.exerciseInfo{
+    display: flex;
+    flex-direction: row;
+
+    font-style: italic;
+    font-size: 1.5rem;
+    font-weight: 600;
+    
+    color: var(--text-secondary-color);
+}
+
+.exerciseInfo .weight{
+    margin-left: 2rem;
+}
+
+.newExercise .btn{
+    border: none;
+    outline: none;
+
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    padding: 0.75rem 2.5rem;
+    border-radius: 2rem;
+
+    font-size: 1.5rem;
+    
+    margin-top: 0.5rem;
+
+
+}
+
+.emptyExercises{
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.25em;
+    color: var(--text-primary-color);
+
+    
+}
