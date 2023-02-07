@@ -3,22 +3,21 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ExerciseList } from '../exercise/ExerciseList';
 import { FC } from 'react';
 import { useParams } from "react-router-dom";
-import { Timer } from './Timer';
 import { useState, useEffect, useContext } from 'react';
 
 import { db } from "../../db/firebase-config";
-import { collection, getDocs, addDoc, setDoc, doc, query, deleteDoc, getDoc, Timestamp, orderBy } from "firebase/firestore";
+import { collection, getDocs, doc, query, deleteDoc, getDoc, Timestamp, orderBy } from "firebase/firestore";
 import { UserContext } from '../../db/UserContext';
 import { Modal } from '../tools/Modal';
 import { NewExercise } from '../exercise/NewExercise';
-import { render } from '@testing-library/react';
-import { User } from '../../App';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faTrashCan } from '@fortawesome/free-solid-svg-icons'
 
 import CircularProgress from '@mui/material/CircularProgress';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { Menu, MenuItem } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { CreateNewPreset } from '../preset/CreateNewPreset';
 
 const theme = createTheme({
   palette:{
@@ -51,14 +50,17 @@ export const WorkoutDetail: FC<Props> = () => {
   const [isAddEcerciseOpen, setAddEcerciseOpen] = useState<boolean>(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState<boolean>(false);
 
+  //const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
+
   const [workoutDate, setWorkoutDate] = useState<Timestamp | null>();
 
   const [exercises, setExercises] = useState<Exercise[] | null>(null);
   const getExecises = async () => {
-    const exercisesRef = collection(db, "users/" + user.email + "/workouts/" + id + "/exercises");
+    const email = localStorage.getItem("user_email");
+    const exercisesRef = collection(db, "users/" + email + "/workouts/" + id + "/exercises");
     const exercisesQuery = query(exercisesRef, orderBy("rank", "asc"));
     const data = await getDocs(exercisesQuery);
-
+ 
     setExercises(data.docs.map((doc) => ({
       id: doc.id,
       rank: doc.data().rank,
@@ -79,12 +81,12 @@ export const WorkoutDetail: FC<Props> = () => {
   }
 
   const getWorkoutDate = async () => {
+    const email = localStorage.getItem("user_email");
     const docId = "" + id
-    const docRef = doc(db, "users/" + user.email + "/workouts/", docId);
+    const docRef = doc(db, "users/" + email + "/workouts/", docId);
     try {
       const docSnap = await getDoc(docRef);
       if(docSnap.exists()) {
-          console.log(docSnap.data()?.date);
           setWorkoutDate(docSnap.data()?.date);
       } else {
           console.log("Document does not exist")
@@ -102,6 +104,16 @@ export const WorkoutDetail: FC<Props> = () => {
     return ""
   }
 
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+
   useEffect(() => {
     getExecises();
     getWorkoutDate();
@@ -111,25 +123,40 @@ export const WorkoutDetail: FC<Props> = () => {
     pathname: "/"
   }
 
-  
-
   return (
     <div className='workoutDetail'>
       <div className='topRow'>
         <Link to={newTo} className="link">
-          <FontAwesomeIcon 
-            icon={faArrowLeft}
-            className='backBtn' 
-          />
+          <ArrowBackIcon/>
         </Link>
         <div className='workoutTitle'>
           Workout {parseDate()}
         </div>
-        <FontAwesomeIcon 
-          icon={faTrashCan} 
-          className='deleteBtn'
-          onClick={() => {setIsDeleteOpen(true)}}
-        />  
+
+        <div onClick={handleClick}>
+          <MoreVertIcon/>
+        </div>
+        
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            'aria-labelledby': 'basic-button',
+          }}
+        >
+          <CreateNewPreset 
+            exercises={exercises}
+            closeMenu={handleClose}
+            workoutId={id}
+          />
+          <MenuItem sx={{color: "red"}} onClick={() => {
+            setIsDeleteOpen(true);
+            handleClose();
+          }}>Delete</MenuItem>
+
+        </Menu>
       </div>
       
       <Modal isOpen={isDeleteOpen} onClose={() => {setIsDeleteOpen(false)}}>
@@ -140,6 +167,8 @@ export const WorkoutDetail: FC<Props> = () => {
           DELETE
         </button>
       </Modal>
+
+      
 
       {
         exercises === null
