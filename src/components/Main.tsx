@@ -15,6 +15,22 @@ import { Header } from './Header';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
+import CircularProgress from '@mui/material/CircularProgress';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Fab } from '@mui/material';
+
+import AddIcon from '@mui/icons-material/Add';
+
+const theme = createTheme({
+  palette:{
+    primary: {
+      main: "#3FC2C4"
+    },
+    secondary:{
+      main: "#FDFDFD"
+    }
+  },
+});
 
 type Workout = {
   id: string,
@@ -48,7 +64,7 @@ export function Main(props: Props) {
     return date.toDate().toLocaleDateString('en-US', { day: '2-digit', month: 'short'});
   }
 
-  const [workouts, setWorkouts] = useState<Workout[]>([]);
+  const [workouts, setWorkouts] = useState<Workout[] | null>(null);
   const getWorkouts = async () => {
     if(user.email !== ""){
       const workoutsRef = collection(db, "users/" + user.email + "/workouts");
@@ -96,18 +112,37 @@ export function Main(props: Props) {
   
   return (
     <div className='main'>
+      
       <Header/>
+      
       {
         user.name === "" 
-          ? "NOT SIGNED IN." 
-          : <div>
-              <WorkoutList list={workouts}/>
-              <FontAwesomeIcon 
-                icon={faCirclePlus} 
-                className="addButton"
-                onClick={addWorkout}
-              />
+          ? <div className='noUserWelcomePage'>
+              <span>Welcome to FitLog, an app that helps you keep track of your workouts.</span>
+              <span>To start using FitLog, please log in using your Google account.</span>
             </div>
+          : workouts === null
+            ? <ThemeProvider theme={theme}>
+                <div className='loading'>
+                  <CircularProgress size="4rem"/>
+                  <span>Loading workouts...</span>
+                </div>
+              </ThemeProvider>
+            : <div className='workoutList'>
+                <WorkoutList list={workouts}/>
+                <div className='addButton'>
+                  <ThemeProvider theme={theme}>
+                    <Fab 
+                      color="primary" 
+                      style={{width: '4rem', height: '4rem'}}
+                      aria-label="add" 
+                      onClick={addWorkout}
+                    >
+                      <AddIcon color='secondary' style={{width: '2rem', height: '2rem'}} />
+                    </Fab>
+                  </ThemeProvider>
+                </div>
+              </div>
       }
     </div>
     

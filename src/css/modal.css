@@ -18,13 +18,15 @@
     width: 80%;
 
     background-color: var(--background-color);
-    padding: 0.5rem 1rem;
+    padding: 1rem 1.5rem;
 
     color: var(--text-primary-color);
 
     display: flex;
     flex-direction: column;
 
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-primary-color);
 }
 
 .modalTitle{
@@ -38,32 +40,21 @@
 .modal .row{
     display: flex;
     flex-direction: row;
+    align-items: center;
+
     justify-content: space-between;
+
+
 }
+
+.modal .col{
+    display: flex;
+    flex-direction: column;
+}
+
 
 .modal label{
     text-align: start;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 900;
-
-    font-size: 1.5rem;
-
-}
-
-.modal input{
-    font-size: 1.5rem;
-
-    border-style: solid;
-    border-radius: 1rem;
-    border-width: 3px;
-    padding: 0.25rem 0.5rem;
-
-    width: 50%;
-}
-
-.modal input:focus{
-    border-color: #3FC2C4 !important;
-    outline: #3FC2C4;
 }
 
 

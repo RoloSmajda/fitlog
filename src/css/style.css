@@ -116,16 +116,13 @@
     color: var(--text-primary-color);
 }
 
-.addButton{
-    color: var(--primary-color);
-    font-size: 4em;
 
+.addButton{
     position: fixed;
-    bottom: 1em;
-    right: 0.5em;
-    background-color: var(--background-color);
-    border-radius: 50%;
+    bottom: 5rem;
+    right: 2.5rem;
 }
+
 
 .workoutDetail .topRow{
     background-color: var(--background-color);
@@ -213,14 +210,52 @@
     font-size: 1.5rem;
     
     margin-top: 0.5rem;
+}
 
-
+.newExercise{
+    text-align: center;
 }
 
 .emptyExercises{
     font-family: 'Poppins', sans-serif;
     font-size: 1.25em;
     color: var(--text-primary-color);
+    text-align: center;  
+}
 
+.emptryWorkouts{
+    display: flex;
+    flex-direction: column;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.emptryWorkouts span{
+    margin-top: 1rem;
+}
+
+.loading{
+    height: 50vh;
     
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5em;
+    
+}
+
+.noUserWelcomePage{
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5em;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-evenly;
+    height: 50vh;
 }

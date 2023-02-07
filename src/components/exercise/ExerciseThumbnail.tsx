@@ -8,12 +8,15 @@ import { faPenToSquare, faEllipsisVertical } from '@fortawesome/free-solid-svg-i
 
 export interface Props {
     name: string,
+    type:string,
+    isWeighted: string
     weight: number, 
     repsCount: number,
     seriesCount: number,
+    note: string
 }
 
-export const ExerciseThumbnail:FC<Props> = ({name, weight, repsCount, seriesCount}) => {
+export const ExerciseThumbnail:FC<Props> = ({name, type, isWeighted, weight, repsCount, seriesCount, note}) => {
   return (
     <div className='exerciseThumbnail'>
       <div className='exerciseTopRow'>
@@ -27,12 +30,30 @@ export const ExerciseThumbnail:FC<Props> = ({name, weight, repsCount, seriesCoun
           />
         </div>
       </div>
+
       <div className='exerciseInfo'>
         <div className='seriesReps'>
-        {seriesCount}x{repsCount}
+        {
+          seriesCount !== 1
+            ? seriesCount + "x"
+            : ""
+        }
+        {
+          repsCount
+        }
+        {
+          type === "reps"
+            ? " reps"
+            : " sec"
+          
+        } 
         </div>
         <div className='weight'>
-          {weight}kg
+          {
+            isWeighted === "yes"
+              ? weight + "kg"
+              : ""
+          }
         </div>
       </div>
       
