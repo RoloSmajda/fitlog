@@ -23,8 +23,9 @@ const theme = createTheme({
   }
 });
 
-type Preset = {
+export type Preset = {
   id?: string,
+  presetName: string,
   workoutId: string,
 }
 
@@ -47,6 +48,7 @@ export const CreateNewPreset: FC<Props> = ({exercises, closeMenu, workoutId}) =>
 
     setPresets(data.docs.map((doc) => ({
       id: doc.id,
+      presetName: doc.data().presetName,
       workoutId: doc.data().workoutId
     })));
   }

@@ -18,6 +18,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Menu, MenuItem } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { CreateNewPreset } from '../preset/CreateNewPreset';
+import { PresetsPreview } from '../preset/PresetsPreview';
 
 const theme = createTheme({
   palette:{
@@ -182,6 +183,7 @@ export const WorkoutDetail: FC<Props> = () => {
             {
               exercises.length < 1 
               ? <div className='emptyExercises'>
+                  <PresetsPreview/>
                   This workout has no exercises. Use "Add exercise" button to add exercises to this workout.
                 </div>
               : <ExerciseList
