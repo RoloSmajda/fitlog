@@ -69,8 +69,8 @@ export const NewExercise: FC<Props> = ({ isOpen, openModal, closeModal, getExerc
         seriesCount: parseInt(seriesCount),
         note: note,
       }
-
-      const exerciseRef = collection(db, "users/" + user.email + "/workouts/" + id + "/exercises");
+      const email = localStorage.getItem("user_email");
+      const exerciseRef = collection(db, "users/" + email + "/workouts/" + id + "/exercises");
       await addDoc(exerciseRef, newExercise);
       getExercises();
 
