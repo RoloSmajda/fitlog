@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from 'react';
 
 import { db } from "../../db/firebase-config";
-import { collection, getDocs, doc, query, deleteDoc, getDoc, Timestamp, orderBy } from "firebase/firestore";
+import { collection, getDocs, doc, query, deleteDoc, getDoc, Timestamp, orderBy, addDoc } from "firebase/firestore";
 import { UserContext } from '../../db/UserContext';
 import { Modal } from '../tools/Modal';
 import { NewExercise } from '../exercise/NewExercise';
@@ -77,6 +77,16 @@ export const WorkoutDetail: FC<Props> = () => {
 
   const deleteWorkout = async () => {
     const docId = "" + id;
+    
+    const email = localStorage.getItem("user_email");
+    const exercisesRef = collection(db, "users/" + email + "/workouts/" + docId + "/exercises");
+    const exercisesQuery = query(exercisesRef, orderBy("rank", "asc"));
+    const data = await getDocs(exercisesQuery);
+ 
+    data.docs.map(async (document) => (
+      await deleteDoc(doc(db, "users/" + user.email + "/workouts/", docId, "/exercises/" + document.id))
+    ));
+
     await deleteDoc(doc(db, "users/" + user.email + "/workouts/", docId));
     navigate("/");
   }
@@ -114,6 +124,32 @@ export const WorkoutDetail: FC<Props> = () => {
     setAnchorEl(null);
   };
 
+  const loadExercisesFromPreset = async (presetId: string | undefined) => {
+    const email = localStorage.getItem("user_email");
+    const exercisesRef = collection(db, "users/" + email + "/presets/" + presetId + "/exercises");
+    const exercisesQuery = query(exercisesRef, orderBy("rank", "asc"));
+    const data = await getDocs(exercisesQuery);
+    
+    const exerciseRef = collection(db, "users/" + email + "/workouts/" + id + "/exercises");
+
+
+    data.docs.map(async (doc) => (
+      await addDoc(exerciseRef, {
+        id: doc.id,
+        rank: doc.data().rank,
+        name: doc.data().name,
+        type: doc.data().type,
+        isWeighted: doc.data().isWeighted,
+        weight: doc.data().weight,
+        repsCount: doc.data().repsCount,
+        seriesCount: doc.data().seriesCount,
+        note: doc.data().note
+      })
+    ));
+
+    getExecises();
+    
+  }
 
   useEffect(() => {
     getExecises();
@@ -169,8 +205,6 @@ export const WorkoutDetail: FC<Props> = () => {
         </button>
       </Modal>
 
-      
-
       {
         exercises === null
           ? <ThemeProvider theme={theme}>
@@ -182,10 +216,7 @@ export const WorkoutDetail: FC<Props> = () => {
           : <>
             {
               exercises.length < 1 
-              ? <div className='emptyExercises'>
-                  <PresetsPreview/>
-                  This workout has no exercises. Use "Add exercise" button to add exercises to this workout.
-                </div>
+              ? <PresetsPreview loadExercisesFromPreset={loadExercisesFromPreset}/>
               : <ExerciseList
                   list={exercises}
                 /> 
