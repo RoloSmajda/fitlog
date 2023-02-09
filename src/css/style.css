@@ -153,12 +153,11 @@
     color: var(--warning-color);
 }
 
-.workoutDetail{
-}
 
 .exerciseThumbnail{
     align-items: start;
     margin-bottom: 1rem;
+    padding-right: 0.75rem;
 }
 
 .exerciseTopRow{
@@ -167,9 +166,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: start;
+    align-items: center;
 
     font-size: 1.5em;
+    margin-bottom: 0.5rem;
 }
 
 .editIcon{
@@ -180,14 +180,12 @@
     font-weight: 900;
     color: var(--text-primary-color);
 
-    margin-bottom: 0.5rem;
 }
 
 .exerciseInfo{
     display: flex;
     flex-direction: row;
 
-    font-style: italic;
     font-size: 1.5rem;
     font-weight: 600;
     
@@ -258,4 +256,8 @@
     text-align: center;
     justify-content: space-evenly;
     height: 50vh;
+}
+
+.exerciseMoreBtn{
+    padding: 0!important;
 }

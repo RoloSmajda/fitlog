@@ -76,18 +76,18 @@ export const WorkoutDetail: FC<Props> = () => {
   }
 
   const deleteWorkout = async () => {
-    const docId = "" + id;
+    const workoutId = "" + id;
     
     const email = localStorage.getItem("user_email");
-    const exercisesRef = collection(db, "users/" + email + "/workouts/" + docId + "/exercises");
+    const exercisesRef = collection(db, "users/" + email + "/workouts/" + workoutId + "/exercises");
     const exercisesQuery = query(exercisesRef, orderBy("rank", "asc"));
     const data = await getDocs(exercisesQuery);
  
     data.docs.map(async (document) => (
-      await deleteDoc(doc(db, "users/" + user.email + "/workouts/", docId, "/exercises/" + document.id))
+      await deleteDoc(doc(db, "users/" + user.email + "/workouts/", workoutId, "/exercises/" + document.id))
     ));
 
-    await deleteDoc(doc(db, "users/" + user.email + "/workouts/", docId));
+    await deleteDoc(doc(db, "users/" + user.email + "/workouts/", workoutId));
     navigate("/");
   }
 
@@ -219,6 +219,8 @@ export const WorkoutDetail: FC<Props> = () => {
               ? <PresetsPreview loadExercisesFromPreset={loadExercisesFromPreset}/>
               : <ExerciseList
                   list={exercises}
+                  workoutId={id === undefined ? "" : id}
+                  getExecises={getExecises}
                 /> 
             }
       

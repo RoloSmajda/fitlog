@@ -7,16 +7,19 @@ import '../../css/style.css'
 import CircularProgress from '@mui/material/CircularProgress';
 
 export interface Props {
-    list: Exercise[]
+    list: Exercise[],
+    workoutId: string,
+    getExecises: () => void
 }
 
-export const ExerciseList:FC<Props> = ({list}) => {
+export const ExerciseList:FC<Props> = ({list, workoutId, getExecises}) => {
   return (
     <div>
       {
         list.map((exercise, i) => {
             return <ExerciseThumbnail
                 key={i}
+                exerciseId={exercise.id}
                 name={exercise.name}
                 type={exercise.type}
                 isWeighted={exercise.isWeighted}
@@ -24,6 +27,8 @@ export const ExerciseList:FC<Props> = ({list}) => {
                 repsCount={exercise.repsCount}
                 seriesCount={exercise.seriesCount}
                 note={exercise.note}
+                workoutId={workoutId}
+                getExecises={getExecises}
             />
         })
       }
