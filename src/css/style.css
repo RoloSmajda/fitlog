@@ -182,6 +182,12 @@
 
 }
 
+.exerciseInfoEdit{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .exerciseInfo{
     display: flex;
     flex-direction: row;
@@ -260,4 +266,12 @@
 
 .exerciseMoreBtn{
     padding: 0!important;
+}
+
+.editControls{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    margin-top: 0.75rem;
 }

@@ -9,9 +9,11 @@ import IconButton from '@mui/material/IconButton';
 import { db } from "../../db/firebase-config";
 import { collection, getDocs, doc, query, deleteDoc, getDoc, Timestamp, orderBy, addDoc } from "firebase/firestore";
 import { UserContext } from '../../db/UserContext';
+import { useState, useEffect, useContext } from 'react';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import { fontSize } from '@mui/system';
+import { EditExercise } from './EditExercise';
 
 const theme = createTheme({
   palette: {
@@ -41,7 +43,7 @@ export interface Props {
 export const ExerciseThumbnail: FC<Props> = ({ 
   exerciseId, name, type, isWeighted, weight, repsCount, seriesCount, note, workoutId, getExecises
 }) => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const moreOptionsOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -50,7 +52,7 @@ export const ExerciseThumbnail: FC<Props> = ({
     setAnchorEl(null);
   };
 
-  const [modalOpen, setModalOpen] = React.useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
 
@@ -59,6 +61,32 @@ export const ExerciseThumbnail: FC<Props> = ({
     await deleteDoc(doc(db, "users/" + email + "/workouts/", workoutId, "/exercises/" + exerciseId))
     getExecises();
     moreOptionsClose();
+  }
+
+  const [isEdit, setIsEdit] = useState<boolean>(false);
+  const closeEdit = () => {
+    getExecises();
+    moreOptionsClose();
+    setIsEdit(false);
+  }
+
+
+  if(isEdit){
+    return (
+      <EditExercise
+        exerciseId={exerciseId}
+        name={name}
+        type={type}
+        isWeighted={isWeighted}
+        weight={weight}
+        repsCount={repsCount}
+        seriesCount={seriesCount}
+        note={note}
+        workoutId={workoutId}
+        closeEdit={closeEdit}
+
+      />
+    );  
   }
 
   return (
@@ -89,7 +117,7 @@ export const ExerciseThumbnail: FC<Props> = ({
               'aria-labelledby': 'basic-button',
             }}
           >
-            <MenuItem onClick={moreOptionsClose}>Edit</MenuItem>
+            <MenuItem onClick={() => {setIsEdit(true)}}>Edit</MenuItem>
             <MenuItem onClick={openModal} sx={{ color: "red" }}>Delete</MenuItem>
           </Menu>
           
@@ -104,7 +132,7 @@ export const ExerciseThumbnail: FC<Props> = ({
               <div className='modalControls'>
                 <Button 
                   variant="text" 
-                  sx={{color: 'red', fontSize: 16, fontWeight: 600}}
+                  sx={{color: '#C4413F', fontSize: 16, fontWeight: 600}}
                   onClick={() => {
                     deleteExercise();
                     closeModal();
