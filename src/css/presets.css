@@ -1,5 +1,4 @@
-.presets{
-}
+
 
 .presetsRow{
    display: flex;
@@ -9,12 +8,6 @@
    align-items: center;
 }
 
-.presets button{
-    
-}
-
-.carouselWrapper{
-}
 
 
 .presetExerciseThumbnail{

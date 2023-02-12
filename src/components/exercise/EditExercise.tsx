@@ -57,36 +57,60 @@ export const EditExercise: FC<Props> = (
   const [repsCountInput, setRepsCountInput] = useState<string>(repsCount.toString());
   const [seriesCountInput, setSeriesCountInput] = useState<string>(seriesCount.toString());
 
-  const updateExercise = async () => {
+  const [nameError, setNameError] = useState({error: false, msg: ""});
+  const [weightError, setWeightError] = useState({error: false, msg: ""});
+  const [seriesError, setSeriesError] = useState({error: false, msg: ""});
+  const [repsError, setRepsError] = useState({error: false, msg: ""});
+
+  const validateInputs = ():boolean => {
+    let valid = true;
+    if(isNaN(parseInt(repsCountInput))){
+      setRepsError({error: true, msg: "Enter a number."});
+      valid = false;
+    }
+    if(isNaN(parseInt(seriesCountInput))){
+      setSeriesError({error: true, msg: "Enter a number."});
+      valid = false;
+    }
+    if(isNaN(parseInt(weightInput))){
+      setWeightError({error: true, msg: "Enter a number."});
+      valid = false;
+    }
+
     if(nameInput === ""){
-      console.log("NAME EMPTY");
-      return;
+      setNameError({error: true, msg: "Name cannot be empty."});
+      valid = false;
     }
     if(repsCountInput === ""){
-      console.log("UNITS EMPTY");
-      return;
-    }
-    if(isWeighted === "yes" && weightInput === ""){
-      console.log("WEIGHT EMPTY");
-      return;
+      setRepsError({error: true, msg: "Field cannot be empty."});
+      valid = false;
     }
     if(seriesCountInput === ""){
-      console.log("SERIES EMPTY");
-      return;
+      setSeriesError({error: true, msg: "Field cannot be empty."});
+      valid = false;
+    }
+    if(isWeighted === "yes" && weightInput === ""){
+      setWeightError({error: true, msg: "Field cannot be empty."});
+      valid = false;
     }
 
+    return valid;
+  }
 
-    const email = localStorage.getItem("user_email");
-    const docRef = doc(db, "users/" + email + "/workouts/", workoutId, "/exercises/" + exerciseId)
+  const updateExercise = async () => {
+    if(validateInputs()){
+      const email = localStorage.getItem("user_email");
+      const docRef = doc(db, "users/" + email + "/workouts/", workoutId, "/exercises/" + exerciseId)
 
-    await updateDoc(docRef, {
-      name: nameInput,
-      weight: parseInt(weightInput),
-      repsCount: parseInt(repsCountInput),
-      seriesCount: parseInt(seriesCountInput)
-    });
+      await updateDoc(docRef, {
+        name: nameInput,
+        weight: parseInt(weightInput),
+        repsCount: parseInt(repsCountInput),
+        seriesCount: parseInt(seriesCountInput)
+      });
 
-    closeEdit();
+      closeEdit();
+    }
   }
 
   return (
@@ -99,7 +123,10 @@ export const EditExercise: FC<Props> = (
             label="Exercise name" 
             variant="outlined" 
             value={nameInput}
-            onChange={(e) => setNameInput(e.target.value)}
+            onChange={(e) => {
+              setNameInput(e.target.value);
+              setNameError({error: false, msg: ""});
+            }}
             margin="dense"
             fullWidth 
             inputProps={{
@@ -107,6 +134,8 @@ export const EditExercise: FC<Props> = (
                 padding: 10
               }
             }}
+            error={nameError.error ? nameError.error : false}
+            helperText={nameError.error ? nameError.msg : ""}
           />
         </div>
       </div>
@@ -121,13 +150,18 @@ export const EditExercise: FC<Props> = (
                     label="Series" 
                     variant="outlined" 
                     value={seriesCountInput}
-                    onChange={(e) => setSeriesCountInput(e.target.value)}
+                    onChange={(e) => {
+                      setSeriesCountInput(e.target.value);
+                      setSeriesError({error: false, msg: ""});
+                    }}
                     margin="dense"
                     inputProps={{
                       style: {
                         padding: 10
                       }
                     }}
+                    error={seriesError.error ? seriesError.error : false}
+                    helperText={seriesError.error ? seriesError.msg : ""}
                   />
                 </div>
               : ""
@@ -140,13 +174,18 @@ export const EditExercise: FC<Props> = (
               label={type === "reps" ? "Reps" : "Seconds"}
               variant="outlined" 
               value={repsCountInput}
-              onChange={(e) => setRepsCountInput(e.target.value)}
+              onChange={(e) => {
+                setRepsCountInput(e.target.value);
+                setRepsError({error: false, msg: ""});
+              }}
               margin="dense"
               inputProps={{
                 style: {
                   padding: 10
                 }
               }}
+              error={repsError.error ? repsError.error : false}
+              helperText={repsError.error ? repsError.msg : ""}
             />
           }
         </div>
@@ -158,7 +197,10 @@ export const EditExercise: FC<Props> = (
                   label="Weight"
                   variant="outlined"
                   value={weightInput}
-                  onChange={(e) => setWeightInput(e.target.value)}
+                  onChange={(e) => {
+                    setWeightInput(e.target.value);
+                    setWeightError({error: false, msg: ""});
+                  }}
                   InputProps={{
                     endAdornment: <InputAdornment position="end">kg</InputAdornment>,
                   }}
@@ -168,6 +210,8 @@ export const EditExercise: FC<Props> = (
                       padding: 10
                     }
                   }}
+                  error={weightError.error ? weightError.error : false}
+                  helperText={weightError.error ? weightError.msg : ""}
                 />
               : ""
           }

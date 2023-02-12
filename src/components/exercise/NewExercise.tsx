@@ -168,7 +168,6 @@ export const NewExercise: FC<Props> = ({ isOpen, openModal, closeModal, getExerc
               row
               value={exerciseWeighted}
               onChange={(e) => setExerciseWeighted(e.target.value)}
-              
             >
               <FormControlLabel value="yes" control={<Radio />} label="Yes" />
               <FormControlLabel value="no" control={<Radio/>} label="No"/>
