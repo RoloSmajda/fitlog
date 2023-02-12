@@ -12,6 +12,7 @@ import { Modal } from '../tools/Modal';
 import { useParams } from "react-router-dom";
 import { createTheme, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField, ThemeProvider } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
+import Button from '@mui/material/Button';
 
 const theme = createTheme({
   palette:{
@@ -21,7 +22,7 @@ const theme = createTheme({
   },
   typography:{
     fontSize: 16,
-    
+    fontFamily: 'Inter, sans-serif',
   }
 });
 
@@ -240,8 +241,25 @@ export const NewExercise: FC<Props> = ({ isOpen, openModal, closeModal, getExerc
         />
 
         <div className='modalControls'>
-          <span className='closeBtn' onClick={closeModal}>CLOSE</span>
-          <span className='addBtn' onClick={addExercise}>ADD</span>
+          <ThemeProvider theme={theme}>
+          <Button
+            variant="text" 
+            sx={{color: '#C4413F', fontSize: 16, fontWeight: 900}}
+            onClick={closeModal}
+            className='closeBtn'
+          >
+            CLOSE
+          </Button>
+          <Button
+            variant="text" 
+            sx={{fontSize: 16, fontWeight: 900}}
+            onClick={addExercise}
+            className='addBtn'
+          >
+            ADD
+          </Button>
+          </ThemeProvider>
+          
         </div>
         </ThemeProvider>
       </Modal>

@@ -12,7 +12,19 @@ import { collection, getDocs, addDoc, setDoc, doc, query, orderBy } from "fireba
 import { Link, useNavigate } from "react-router-dom";
 
 import logo from '../img/fitlog_logo02.png'
+import { createTheme, TextField, ThemeProvider, Button } from '@mui/material';
 
+const theme = createTheme({
+  palette:{
+    primary: {
+      main: "#3FC2C4"
+    },
+  },
+  typography:{
+    fontFamily: 'Poppins',
+    fontSize: 20,
+  }
+});
 
 export interface Props {
 }
@@ -115,9 +127,14 @@ export function Header (props: Props) {
         {
           user.name === "" 
             ? <div className='logIn'>
-                <span onClick={handleSignIn}>
-                  Log in
-                </span> 
+                <ThemeProvider theme={theme}>
+                <Button 
+                  onClick={handleSignIn} 
+                  color="primary" 
+                >
+                  Log In
+                </Button>
+                </ThemeProvider>
               </div>
             : <div className='userImg'>
                 <img src={user.photoUrl} alt="user_pic" />

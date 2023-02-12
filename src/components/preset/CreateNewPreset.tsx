@@ -4,7 +4,7 @@ import '../../css/modal.css'
 import { db } from "../../db/firebase-config";
 import { collection, getDocs, addDoc, setDoc, doc, query, deleteDoc, getDoc, Timestamp, orderBy } from "firebase/firestore";
 import { Exercise } from '../workout/WorkoutDetail';
-import { MenuItem } from '@mui/material';
+import { Button, MenuItem } from '@mui/material';
 
 import { useState, useEffect } from 'react';
 import Modal from '@mui/material/Modal';
@@ -19,7 +19,7 @@ const theme = createTheme({
   },
   typography:{
     fontSize: 18,
-    
+    fontFamily: 'Inter, sans-serif',
   }
 });
 
@@ -109,8 +109,24 @@ export const CreateNewPreset: FC<Props> = ({exercises, closeMenu, workoutId}) =>
             />
           </ThemeProvider>
           <div className='modalControls'>
-          <span className='closeBtn' onClick={() => {setModalOpen(false)}}>CLOSE</span>
-          <span className='addBtn' onClick={saveExercicesAsPreset}>ADD</span>
+          <ThemeProvider theme={theme}>
+          <Button
+            variant="text" 
+            sx={{color: '#C4413F', fontSize: 16, fontWeight: 900}}
+            onClick={() => {setModalOpen(false)}}
+            className='closeBtn'
+          >
+            CLOSE
+          </Button>
+          <Button
+            variant="text" 
+            sx={{fontSize: 16, fontWeight: 900}}
+            onClick={saveExercicesAsPreset}
+            className='addBtn'
+          >
+            SAVE
+          </Button>
+          </ThemeProvider>
         </div>
         </div>
       </Modal>
