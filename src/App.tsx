@@ -36,8 +36,8 @@ function App() {
 
       <Router>
         <Routes>
-          <Route path="/" element={<Main/>} />
-          <Route path="/workout/:id" element={<WorkoutDetail/>} />
+          <Route path="/fitlog/" element={<Main/>} />
+          <Route path="/fitlog/workout/:id" element={<WorkoutDetail/>} />
         </Routes>
       </Router>
 
