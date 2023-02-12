@@ -11,6 +11,14 @@ import Button from '@mui/material/Button';
 import { db } from "../../db/firebase-config";
 import { collection, updateDoc, doc } from "firebase/firestore";
 
+import { styled } from "@mui/system";
+
+const SmallTextField = styled(TextField, {
+    name: "SmallTextField",
+})({
+    width: "80%",
+});
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -23,7 +31,8 @@ const theme = createTheme({
   typography: {
     fontFamily: 'Poppins',
     fontSize: 16,
-  }
+  },
+  
 });
 
 export interface Props {
@@ -66,14 +75,15 @@ export const EditExercise: FC<Props> = (
       return;
     }
 
+
     const email = localStorage.getItem("user_email");
     const docRef = doc(db, "users/" + email + "/workouts/", workoutId, "/exercises/" + exerciseId)
 
     await updateDoc(docRef, {
       name: nameInput,
-      weight: weightInput,
-      repsCount: repsCountInput,
-      seriesCount: seriesCountInput
+      weight: parseInt(weightInput),
+      repsCount: parseInt(repsCountInput),
+      seriesCount: parseInt(seriesCountInput)
     });
 
     closeEdit();
@@ -92,7 +102,11 @@ export const EditExercise: FC<Props> = (
             onChange={(e) => setNameInput(e.target.value)}
             margin="dense"
             fullWidth 
-            sx={{}}
+            inputProps={{
+              style: {
+                padding: 10
+              }
+            }}
           />
         </div>
       </div>
@@ -102,13 +116,18 @@ export const EditExercise: FC<Props> = (
           {
             seriesCount !== 1
               ? <div>
-                  <TextField 
+                  <SmallTextField 
                     id="seriesCount" 
                     label="Series" 
                     variant="outlined" 
                     value={seriesCountInput}
                     onChange={(e) => setSeriesCountInput(e.target.value)}
                     margin="dense"
+                    inputProps={{
+                      style: {
+                        padding: 10
+                      }
+                    }}
                   />
                 </div>
               : ""
@@ -116,20 +135,25 @@ export const EditExercise: FC<Props> = (
         </div>
         <div className='repsEdit'>
           {
-            <TextField 
+            <SmallTextField 
               id="repsCount" 
               label={type === "reps" ? "Reps" : "Seconds"}
               variant="outlined" 
               value={repsCountInput}
               onChange={(e) => setRepsCountInput(e.target.value)}
               margin="dense"
+              inputProps={{
+                style: {
+                  padding: 10
+                }
+              }}
             />
           }
         </div>
         <div className='weightEdit'>
           {
             isWeighted === "yes"
-              ? <TextField 
+              ? <SmallTextField 
                   id="weight" 
                   label="Weight"
                   variant="outlined"
@@ -139,14 +163,17 @@ export const EditExercise: FC<Props> = (
                     endAdornment: <InputAdornment position="end">kg</InputAdornment>,
                   }}
                   margin="dense"
+                  inputProps={{
+                    style: {
+                      padding: 10
+                    }
+                  }}
                 />
               : ""
           }
         </div>
       </div>
-      
       <div className='editControls'>
-        <ThemeProvider theme={theme} >
         <Button
           variant="text" 
           sx={{color: '#C4413F', fontSize: 16, fontWeight: 600}}
@@ -161,7 +188,6 @@ export const EditExercise: FC<Props> = (
         >
           SAVE
         </Button>
-        </ThemeProvider>
         
       </div>
     </div>

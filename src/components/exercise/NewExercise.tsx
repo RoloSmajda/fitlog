@@ -54,11 +54,48 @@ export const NewExercise: FC<Props> = ({ isOpen, openModal, closeModal, getExerc
 
   const [note, setNote] = useState<string>("");
 
-  const addExercise = async () => {
-    if ((exerciseName === "" || exerciseUnits === "" || seriesCount === "") && (exerciseWeighted === "yes" && exerciseWeight === "")) {
-      console.log("NO EMPTY FIELDS");
+  const [nameError, setNameError] = useState({error: false, msg: ""});
+  const [weightError, setWeightError] = useState({error: false, msg: ""});
+  const [seriesError, setSeriesError] = useState({error: false, msg: ""});
+  const [repsError, setRepsError] = useState({error: false, msg: ""});
 
-    } else {
+  const validateInputs = ():boolean => {
+    let valid = true;
+    if(isNaN(parseInt(exerciseUnits))){
+      setRepsError({error: true, msg: "Enter a number."});
+      valid = false;
+    }
+    if(isNaN(parseInt(seriesCount))){
+      setSeriesError({error: true, msg: "Enter a number."});
+      valid = false;
+    }
+    if(isNaN(parseInt(exerciseWeight))){
+      setWeightError({error: true, msg: "Enter a number."});
+      valid = false;
+    }
+
+    if(exerciseName === ""){
+      setNameError({error: true, msg: "Name cannot be empty."});
+      valid = false;
+    }
+    if(exerciseUnits === ""){
+      setRepsError({error: true, msg: "Field cannot be empty."});
+      valid = false;
+    }
+    if(seriesCount === ""){
+      setSeriesError({error: true, msg: "Field cannot be empty."});
+      valid = false;
+    }
+    if(exerciseWeighted === "yes" && exerciseWeight === ""){
+      setWeightError({error: true, msg: "Field cannot be empty."});
+      valid = false;
+    }
+
+    return valid;
+  }
+
+  const addExercise = async () => {
+    if (validateInputs()) {
       const newExercise: Exercise = {
         rank: exercisesCount,
         name: exerciseName,
@@ -82,11 +119,12 @@ export const NewExercise: FC<Props> = ({ isOpen, openModal, closeModal, getExerc
 
       setExerciseType("reps");
       setExerciseWeighted("yes");
-      closeModal();
+      closeModal(); 
     }
 
 
   }
+
 
   return (
     <div className='newExercise'>
@@ -100,7 +138,12 @@ export const NewExercise: FC<Props> = ({ isOpen, openModal, closeModal, getExerc
           label="Exercise name" 
           variant="outlined" 
           value={exerciseName}
-          onChange={(e) => setExerciseName(e.target.value)}
+          onChange={(e) => {
+            setExerciseName(e.target.value);
+            setNameError({error: false, msg: ""});
+          }}
+          error={nameError.error ? nameError.error : false}
+          helperText={nameError.error ? nameError.msg : ""}
         />
 
         <div className='row'>
@@ -139,11 +182,16 @@ export const NewExercise: FC<Props> = ({ isOpen, openModal, closeModal, getExerc
               label="Weight"
               variant="outlined"
               value={exerciseWeight}
-              onChange={(e) => setExerciseWeight(e.target.value)}
+              onChange={(e) => {
+                setExerciseWeight(e.target.value);
+                setWeightError({error: false, msg: ""});
+              }}
               InputProps={{
                 endAdornment: <InputAdornment position="end">kg</InputAdornment>,
               }}
               margin="dense"
+              error={weightError.error ? weightError.error : false}
+              helperText={weightError.error ? weightError.msg : ""}
             />
             
             : ""
@@ -157,8 +205,13 @@ export const NewExercise: FC<Props> = ({ isOpen, openModal, closeModal, getExerc
             label="Series"
             variant="outlined" 
             value={seriesCount}
-            onChange={(e) => setSeriesCount(e.target.value)}
+            onChange={(e) => {
+              setSeriesCount(e.target.value);
+              setSeriesError({error: false, msg: ""});
+            }}
             margin="dense"
+            error={seriesError.error ? seriesError.error : false}
+            helperText={seriesError.error ? seriesError.msg : ""}
           />
           
           <TextField 
@@ -167,8 +220,13 @@ export const NewExercise: FC<Props> = ({ isOpen, openModal, closeModal, getExerc
             label={exerciseType === "reps" ? "Reps" : "Seconds"}
             variant="outlined" 
             value={exerciseUnits}
-            onChange={(e) => setExerciseUnits(e.target.value)}
+            onChange={(e) => {
+              setExerciseUnits(e.target.value);
+              setRepsError({error: false, msg: ""});
+            }}
             margin="dense"
+            error={repsError.error ? repsError.error : false}
+            helperText={repsError.error ? repsError.msg : ""}
           />
         </div>
 

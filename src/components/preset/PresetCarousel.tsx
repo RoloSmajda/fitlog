@@ -51,7 +51,7 @@ export const PresetCarousel: FC<Props> = ({ presetToDisplayId }) => {
 	const responsive = {
 		mobile: {
 			breakpoint: { max: 464, min: 0 },
-			items: 2.25
+			items: 2
 		}
 	};
 

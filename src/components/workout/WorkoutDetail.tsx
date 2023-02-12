@@ -15,7 +15,7 @@ import { NewExercise } from '../exercise/NewExercise';
 import CircularProgress from '@mui/material/CircularProgress';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Menu, MenuItem } from '@mui/material';
+import { Button, Menu, MenuItem } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { CreateNewPreset } from '../preset/CreateNewPreset';
 import { PresetsPreview } from '../preset/PresetsPreview';
@@ -197,12 +197,18 @@ export const WorkoutDetail: FC<Props> = () => {
       </div>
       
       <Modal isOpen={isDeleteOpen} onClose={() => {setIsDeleteOpen(false)}}>
-        <div>
           Are you sure you want to delete this workout?
-        </div>
-        <button onClick={deleteWorkout}>
-          DELETE
-        </button>
+          <div className='modalControls'>
+            <Button
+              variant="text" 
+              sx={{color: '#C4413F', fontSize: 16, fontWeight: 600}}
+              onClick={() => {
+                deleteWorkout();
+              }}
+            >
+              DELETE
+            </Button>
+          </div>
       </Modal>
 
       {
