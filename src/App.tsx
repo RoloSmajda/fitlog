@@ -6,7 +6,8 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
-  Routes
+  Routes,
+  Navigate
 } from "react-router-dom";
 import { Main } from './components/Main';
 import { Header } from './components/Header';
@@ -36,8 +37,9 @@ function App() {
 
       <Router>
         <Routes>
-          <Route path="/fitlog/" element={<Main/>} />
-          <Route path="/fitlog/workout/:id" element={<WorkoutDetail/>} />
+          <Route path="/fitlog" element={<Main/>} />
+          <Route path="/workout/:id" element={<WorkoutDetail/>} />
+          <Route path="/" element={<Navigate to="/fitlog" />}/>
         </Routes>
       </Router>
 
