@@ -79,6 +79,10 @@
     flex-direction: column;
 }
 
+.exerciseList{
+    padding: 0 1.5rem;
+}
+
 .workoutThumbnail, .exerciseThumbnail{
     background-color: var(--secondary-color);
     display: flex;
@@ -139,7 +143,7 @@
     font-size: 1.5em;
     color: var(--text-primary-color);
 
-    padding: 1rem 0;
+    padding: 1rem 1.5rem;
     
 }
 
@@ -218,6 +222,7 @@
 
 .newExercise{
     text-align: center;
+    padding: 0 1.5rem;
 }
 
 .emptyExercises{
@@ -225,6 +230,7 @@
     font-size: 1.25em;
     color: var(--text-primary-color);
     text-align: center;  
+    padding: 0 1.5rem;
 }
 
 .emptryWorkouts{

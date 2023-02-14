@@ -14,7 +14,7 @@ export interface Props {
 
 export const ExerciseList:FC<Props> = ({list, workoutId, getExecises}) => {
   return (
-    <div>
+    <div className='exerciseList'>
       {
         list.map((exercise, i) => {
             return <ExerciseThumbnail

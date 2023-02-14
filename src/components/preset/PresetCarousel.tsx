@@ -51,13 +51,13 @@ export const PresetCarousel: FC<Props> = ({ presetToDisplayId }) => {
   const responsive = {
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 2
+      items: 2.25
     }
   };
 
   return (
     <div className='carouselWrapper'>
-      <Divider />
+      <div className='divider'><Divider/></div>
       <Carousel
         responsive={responsive}
         removeArrowOnDeviceType={["tablet", "mobile"]}
@@ -65,7 +65,7 @@ export const PresetCarousel: FC<Props> = ({ presetToDisplayId }) => {
         {
           presetExercises !== null
             ? presetExercises.map((exercise) => (
-              <div className='presetExerciseThumbnail'>
+              <div className={`presetExerciseThumbnail ${exercise.rank === 0 ? "firstItem" : ""}`} >
                 <div className='exerciseName'>
                   {exercise.name.toUpperCase()}
                 </div>
@@ -100,7 +100,7 @@ export const PresetCarousel: FC<Props> = ({ presetToDisplayId }) => {
 
         }
       </Carousel>
-      <Divider />
+      <div className='divider'><Divider/></div>
     </div>
   );
 }

@@ -11,6 +11,10 @@
   --warning-color: #C4413F;
 }
 
+
+
+
+
 body{
   margin: 0;
   background-color: var(--background-color);
@@ -27,9 +31,9 @@ body{
 }
 
 .workoutDetail{
-  padding-left: 1.5em;
+  /* padding-left: 1.5em;
   padding-right: 1.5rem;
-  padding-bottom: 3.5rem;
+  padding-bottom: 3.5rem; */
 }
 
 

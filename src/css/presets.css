@@ -1,11 +1,12 @@
-
+.carouselWrapper{
+}
 
 .presetsRow{
    display: flex;
    flex-direction: row; 
    justify-content: space-between;
-   margin: 0 1rem;
    align-items: center;
+   padding: 0 1.5rem;
 }
 
 
@@ -22,12 +23,16 @@
 
     border-radius: 1em;
 
-    margin: 1em 0;
+    margin: 1rem 0;
     margin-right: 1rem;
 
     box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
 
     height: 5rem;
+}
+
+.firstItem{
+    margin-left: 1.5rem; 
 }
 
 .presetExerciseThumbnail .exerciseName{
@@ -37,4 +42,9 @@
 
 .loadBtn{
     text-align: center;
+    padding: 0 1.5rem;
+}
+
+.divider{
+    margin: 0 1.5rem;
 }
