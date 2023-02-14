@@ -48,3 +48,8 @@
 .divider{
     margin: 0 1.5rem;
 }
+
+.loadingPreset{
+    font-size: 1em;
+    margin: 2rem;
+}

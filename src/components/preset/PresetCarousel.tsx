@@ -12,6 +12,20 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Exercise } from '../workout/WorkoutDetail';
 
+import CircularProgress from '@mui/material/CircularProgress';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette:{
+    primary: {
+      main: "#3FC2C4"
+    },
+    secondary:{
+      main: "#FDFDFD"
+    }
+  },
+});
+
 export interface Props {
   presetToDisplayId: string | undefined
 }
@@ -95,10 +109,15 @@ export const PresetCarousel: FC<Props> = ({ presetToDisplayId }) => {
               </div>
             ))
             : <div>
-              "NULL"
-            </div>
+              <ThemeProvider theme={theme}>
+                <div className='loadingPreset'>
+                  <CircularProgress size="2rem"/>
+                </div>
+              </ThemeProvider>
+              </div>
 
         }
+        
       </Carousel>
       <div className='divider'><Divider/></div>
     </div>
