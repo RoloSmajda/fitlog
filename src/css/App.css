@@ -1,21 +1,21 @@
-:root {
-  --background-color: #FDFDFD;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  --text-primary-color: #2E2E2E;
+:root {
+  --background-color: #fdfdfd;
+
+  --text-primary-color: #2e2e2e;
   --text-secondary-color: #b6b6b6;
 
   /* --primary-color: #4939FF; */
-  --primary-color: #3FC2C4;
-  --secondary-color: #FFFFFF;
+  --primary-color: #3fc2c4;
+  --secondary-color: #ffffff;
 
-  --warning-color: #C4413F;
+  --warning-color: #c4413f;
 }
 
-
-
-
-
-body{
+body {
   margin: 0;
   background-color: var(--background-color);
 }
@@ -24,18 +24,17 @@ body{
   height: 100vh;
 }
 
-.main{
+.main {
   padding-top: 1em;
   padding-left: 1.5em;
   padding-right: 1.5rem;
 }
 
-.workoutDetail{
+.workoutDetail {
   /* padding-left: 1.5em;
   padding-right: 1.5rem;
   padding-bottom: 3.5rem; */
 }
-
 
 .link:link,
 .link:visited,
