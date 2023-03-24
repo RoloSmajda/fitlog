@@ -1,19 +1,20 @@
 {
   "files": {
-    "main.css": "/fitlog/static/css/main.46f8045d.css",
-    "main.js": "/fitlog/static/js/main.184724a8.js",
+    "main.css": "/fitlog/static/css/main.d15be318.css",
+    "main.js": "/fitlog/static/js/main.a867172a.js",
     "static/js/787.46caa3f1.chunk.js": "/fitlog/static/js/787.46caa3f1.chunk.js",
     "static/media/fitlog_logo02.png": "/fitlog/static/media/fitlog_logo02.d1253c1c3de0d39dc134.png",
     "static/media/revicons.eot": "/fitlog/static/media/revicons.a77de540a38981833f9e.eot",
     "static/media/revicons.ttf": "/fitlog/static/media/revicons.57fd05d4ae650374c8de.ttf",
     "static/media/revicons.woff": "/fitlog/static/media/revicons.e8746a624ed098489406.woff",
     "index.html": "/fitlog/index.html",
-    "main.46f8045d.css.map": "/fitlog/static/css/main.46f8045d.css.map",
-    "main.184724a8.js.map": "/fitlog/static/js/main.184724a8.js.map",
+    "static/media/google.svg": "/fitlog/static/media/google.41d156ce0254d76dfb2ae3e00f0f6b68.svg",
+    "main.d15be318.css.map": "/fitlog/static/css/main.d15be318.css.map",
+    "main.a867172a.js.map": "/fitlog/static/js/main.a867172a.js.map",
     "787.46caa3f1.chunk.js.map": "/fitlog/static/js/787.46caa3f1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.46f8045d.css",
-    "static/js/main.184724a8.js"
+    "static/css/main.d15be318.css",
+    "static/js/main.a867172a.js"
   ]
 }
