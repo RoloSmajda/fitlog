@@ -24,7 +24,7 @@ export const WorkoutList: FC<Props> = ({ list }) => {
     );
   }
   return (
-    <div>
+    <div className="flex flex-col">
       {list.map((workout, i) => {
         return <WorkoutThumbnail key={i} id={workout.id} date={workout.date} />;
       })}

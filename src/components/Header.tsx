@@ -22,6 +22,8 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../img/fitlog_logo02.png";
 import { createTheme, TextField, ThemeProvider, Button } from "@mui/material";
 
+import LogoutIcon from "@mui/icons-material/Logout";
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -61,13 +63,12 @@ export function Header(props: Props) {
         </div>
       </div>
 
-      <div className="userInfo">
-        <span
-          className="material-symbols-outlined logOut"
-          onClick={handleLogOut}
-        >
-          logout
-        </span>
+      <div className="flex flex-row justify-between items-end mt-4">
+        <button onClick={handleLogOut}>
+          <ThemeProvider theme={theme}>
+            <LogoutIcon fontSize="large" className="text-gray-400" />
+          </ThemeProvider>
+        </button>
         <div className="userGreeting">
           <div>Hello</div>
           <div>{getFirstName()}</div>

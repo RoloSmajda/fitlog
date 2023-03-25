@@ -191,7 +191,7 @@ export const WorkoutDetail: FC<Props> = () => {
   };
 
   return (
-    <div className="workoutDetail">
+    <div className="workoutDetail flex flex-col h-full justify-between">
       <div className="topRow">
         <Link to={newTo} className="link">
           <ArrowBackIcon />
@@ -258,8 +258,9 @@ export const WorkoutDetail: FC<Props> = () => {
       ) : (
         <>
           {exercises.length < 1 ? (
-            <PresetsPreview loadExercisesFromPreset={loadExercisesFromPreset} />
+            <div>No exercises</div>
           ) : (
+            // <PresetsPreview loadExercisesFromPreset={loadExercisesFromPreset} />
             <ExerciseList
               list={exercises}
               workoutId={id === undefined ? "" : id}
