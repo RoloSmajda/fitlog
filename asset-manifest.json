@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/fitlog/static/css/main.80441ef1.css",
-    "main.js": "/fitlog/static/js/main.eeeff119.js",
+    "main.css": "/fitlog/static/css/main.7739d7c3.css",
+    "main.js": "/fitlog/static/js/main.dac6d45f.js",
     "static/js/787.46caa3f1.chunk.js": "/fitlog/static/js/787.46caa3f1.chunk.js",
     "static/media/fitlog_logo02.png": "/fitlog/static/media/fitlog_logo02.d1253c1c3de0d39dc134.png",
     "index.html": "/fitlog/index.html",
     "static/media/google.svg": "/fitlog/static/media/google.41d156ce0254d76dfb2ae3e00f0f6b68.svg",
-    "main.80441ef1.css.map": "/fitlog/static/css/main.80441ef1.css.map",
-    "main.eeeff119.js.map": "/fitlog/static/js/main.eeeff119.js.map",
+    "main.7739d7c3.css.map": "/fitlog/static/css/main.7739d7c3.css.map",
+    "main.dac6d45f.js.map": "/fitlog/static/js/main.dac6d45f.js.map",
     "787.46caa3f1.chunk.js.map": "/fitlog/static/js/787.46caa3f1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.80441ef1.css",
-    "static/js/main.eeeff119.js"
+    "static/css/main.7739d7c3.css",
+    "static/js/main.dac6d45f.js"
   ]
 }
