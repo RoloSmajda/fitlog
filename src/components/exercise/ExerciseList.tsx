@@ -1,7 +1,7 @@
 import { listenerCount } from "process";
 import * as React from "react";
 import { FC } from "react";
-import { Exercise } from "../workout/WorkoutDetail";
+import { Exercise } from "../workout/WorkoutScreen";
 import { ExerciseThumbnail } from "./ExerciseThumbnail";
 import "../../css/style.css";
 import CircularProgress from "@mui/material/CircularProgress";

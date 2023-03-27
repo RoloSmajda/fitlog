@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
-import { Exercise } from "../workout/WorkoutDetail";
+import { Exercise } from "../workout/WorkoutScreen";
 import "../../css/style.css";
 import { useState, useEffect, useContext } from "react";
 import {

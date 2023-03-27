@@ -191,7 +191,12 @@ export const WorkoutDetail: FC<Props> = () => {
   };
 
   return (
-    <div className="workoutDetail flex flex-col h-full justify-between">
+    <div
+      className={
+        "workoutDetail flex flex-col h-full " +
+        (exercises !== null ? "justify-between" : "")
+      }
+    >
       <div className="topRow">
         <Link to={newTo} className="link">
           <ArrowBackIcon />
@@ -258,7 +263,11 @@ export const WorkoutDetail: FC<Props> = () => {
       ) : (
         <>
           {exercises.length < 1 ? (
-            <div>No exercises</div>
+            <div className="flex flex-col text-center">
+              <div className="px-8 font-poppins text-xl">
+                No exerices in this workout.
+              </div>
+            </div>
           ) : (
             // <PresetsPreview loadExercisesFromPreset={loadExercisesFromPreset} />
             <ExerciseList

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FC } from "react";
 import { useState, useEffect, useContext } from "react";
-import { Exercise } from "../workout/WorkoutDetail";
+import { Exercise } from "../workout/WorkoutScreen";
 
 import { db } from "../../db/firebase-config";
 import {

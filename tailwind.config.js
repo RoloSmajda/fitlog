@@ -14,7 +14,7 @@ module.exports = {
         charcoalgray: "#2e2e2e",
       },
       boxShadow: {
-        "3xl": "rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;",
+        "3xl": "rgba(0, 0, 0, 0.2) 0px 18px 50px -10px",
       },
     },
   },

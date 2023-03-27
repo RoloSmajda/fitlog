@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
-import { WorkoutDetail } from "./WorkoutDetail";
+import { WorkoutDetail } from "./WorkoutScreen";
 import { WorkoutThumbnail } from "./WorkoutThumbnail";
 import { Timestamp } from "firebase/firestore";
 import { Divider } from "@mui/material";

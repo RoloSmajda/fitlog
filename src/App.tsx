@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
-import { WorkoutDetail } from "./components/workout/WorkoutDetail";
+import { WorkoutDetail } from "./components/workout/WorkoutScreen";
 
 import { UserContext } from "./db/UserContext";
 import { LoginScreen } from "./components/LoginScreen";
